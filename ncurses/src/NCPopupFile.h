@@ -1,0 +1,99 @@
+/*---------------------------------------------------------------------\
+|                                                                      |
+|                      __   __    ____ _____ ____                      |
+|                      \ \ / /_ _/ ___|_   _|___ \                     |
+|                       \ V / _` \___ \ | |   __) |                    |
+|                        | | (_| |___) || |  / __/                     |
+|                        |_|\__,_|____/ |_| |_____|                    |
+|                                                                      |
+|                               core system                            |
+|                                                        (C) SuSE GmbH |
+\----------------------------------------------------------------------/
+
+   File:       NCPopupFile.h
+
+   Author:     Gabriele Strattner <gs@suse.de>
+   Maintainer: Michael Andres <ma@suse.de>
+
+/-*/
+#ifndef NCPopupFile_h
+#define NCPopupFile_h
+
+#include <iosfwd>
+
+#include <vector>
+#include <string>
+
+#include "NCPopup.h"
+#include "NCLabel.h"
+#include "NCRichText.h"
+#include "NCTextEntry.h"
+#include "NCPushButton.h"
+#include "NCComboBox.h"
+#include "PackageSelector.h"
+
+#include "PkgNames.h"
+
+class YCPValue;
+
+///////////////////////////////////////////////////////////////////
+//
+//	CLASS NAME : NCPopupFile
+//
+//	DESCRIPTION :
+//
+class NCPopupFile : public NCPopup {
+
+    NCPopupFile & operator=( const NCPopupFile & );
+    NCPopupFile            ( const NCPopupFile & );
+
+private:
+
+    NCLabel * headline;
+    NCRichText * textLabel;
+    NCPushButton * okButton;
+    NCPushButton * cancelButton;
+    NCTextEntry * fileName;
+    NCComboBox * comboBox;
+
+    PackageSelector * packager;
+    
+    string pathName;
+    bool mountFloppy;
+    string floppyDevice;
+    
+    int hDim;
+    int vDim;
+
+    void setDefaultPath();
+    
+protected:
+
+    virtual bool postAgain();
+
+    virtual NCursesEvent wHandleInput( wint_t ch );
+    
+public:
+    
+    NCPopupFile( const wpos at, string device, PackageSelector * pkger );
+    
+    virtual ~NCPopupFile();
+
+    virtual long nicesize(YUIDimension dim);
+
+    void createLayout( );
+
+    NCursesEvent & showFilePopup( );
+
+    bool mountDevice( string device, string errText );
+    void unmount();
+
+    void saveToFile();
+    void loadFromFile();
+    
+};
+
+///////////////////////////////////////////////////////////////////
+
+
+#endif // NCPopupFile_h

@@ -1,0 +1,6 @@
+./src/PkgNames.cc
+./src/NCFileSelection.cc
+./src/NCAskForDirectory.cc
+./src/NCAskForFile.cc
+./src/NCurses.cc
+./src/NCDialog.cc

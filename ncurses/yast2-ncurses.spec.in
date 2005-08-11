@@ -1,0 +1,38 @@
+@HEADER-COMMENT@
+
+# neededforbuild  libpng curl curl-devel gpp libgpp libxcrypt libxcrypt-devel liby2util liby2util-devel openslp openslp-devel openssl openssl-devel pkgconfig popt popt-devel rpm-devel yast2-core yast2-core-devel yast2-devtools yast2-packagemanager yast2-packagemanager-devel doxygen pcre pcre-devel blocxx blocxx-devel libxml2 libxml2-devel 
+
+@HEADER@
+
+Summary:	-
+Provides:	yast2_ui
+Provides:	y2base:/var/lib/YaST2/servers/ncurses
+Provides:	y2base:/usr/lib/YaST2/servers/ncurses
+Provides:	y2base:/usr/lib/YaST2/plugin/libpy2ncurses.so.2
+Provides:	yast2-ui-ncurses
+Obsoletes:	yast2-ui-ncurses
+Provides:	yast2-ui-ncurses-devel
+Obsoletes:	yast2-ui-ncurses-devel
+Provides:	y2curses
+Obsoletes:	y2curses
+Requires:	glibc-locale
+
+%description
+-
+
+@PREP@
+
+@BUILD@
+
+@INSTALL@
+
+@CLEAN@
+
+%files
+%defattr (-, root, root)
+@plugindir@/libpy2ncurses.so.*
+@plugindir@/libpy2ncurses.so
+@plugindir@/libpy2ncurses.la
+@ydatadir@/pkg_layout.ycp
+@ydatadir@/you_layout.ycp
+%doc @docdir@
