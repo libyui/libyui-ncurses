@@ -1,0 +1,13 @@
+.deps
+.libs
+Makefile
+Makefile.in
+site.exp
+*.sum
+*.log
+tmp.out.*
+tmp.err.*
+runcurses
+y2ncurses
+utf8test
+in_wch
