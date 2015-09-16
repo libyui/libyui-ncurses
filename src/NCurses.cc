@@ -268,8 +268,8 @@ void NCurses::init()
 
     //duplicate stdout and stderr before redirecting them to log
     //so that they can be regenerated before system() call
-    stdout_save = dup( 1 );
-    stderr_save = dup( 2 );
+    stdout_save = std::cout.rdbuf();
+    stderr_save = std::cerr.rdbuf();
 
     RedirectToLog();
 
@@ -555,24 +555,22 @@ void NCurses::ForgetDlg( NCDialog * dlg_r )
 
 void NCurses::RedirectToLog()
 {
-    std::string log = "/dev/null";	// this used to be get_log_filename()
+    std::ofstream devNull("/dev/null");
 
     yuiMilestone() << "isatty(stderr)" << ( isatty( 2 ) ? "yes" : "no" ) << std::endl;
 
     if ( isatty( 2 ) && theTerm )
     {
-	// redirect stderr to log
-	close( 2 );
-	open( log.c_str(), O_APPEND | O_CREAT, 0666 );
+	// redirect stderr to /dev/null
+	std::cerr.rdbuf(devNull.rdbuf());
     }
 
     yuiMilestone() << "isatty(stdout)" << ( isatty( 1 ) ? "yes" : "no" ) << std::endl;
 
     if ( isatty( 1 ) && theTerm )
     {
-	// redirect stdout to log
-	close( 1 );
-	open( log.c_str(), O_APPEND | O_CREAT, 0666 );
+	// redirect stdout to /dev/null
+	std::cout.rdbuf(devNull.rdbuf());
     }
 }
 

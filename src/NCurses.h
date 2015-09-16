@@ -185,8 +185,8 @@ public:
     NCurses();
     virtual ~NCurses();
 
-    int stdout_save;
-    int stderr_save;
+    std::streambuf *stdout_save;
+    std::streambuf *stderr_save;
 
     static int cols()  { return ::COLS; }
 

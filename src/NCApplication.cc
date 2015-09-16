@@ -177,8 +177,8 @@ NCApplication::closeUI() {
 
     // Regenerate saved stdout and stderr, so that app called
     // via system() can use them and draw something to the terminal
-    dup2( YNCursesUI::ui()->stdout_save, 1 );
-    dup2( YNCursesUI::ui()->stderr_save, 2 );
+    std::cout.rdbuf(YNCursesUI::ui()->stdout_save);
+    std::cerr.rdbuf(YNCursesUI::ui()->stderr_save);
 }
 
 void
