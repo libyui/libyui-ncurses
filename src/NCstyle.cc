@@ -44,6 +44,33 @@ int NCattribute::_pairs = ::COLOR_PAIRS;
 
 
 
+void NCattribute::init_colors()
+{
+
+    //get number of available colors (property of the terminal)
+    //the same with color pairs
+
+    _colors = ::COLORS;
+    _pairs = ::COLOR_PAIRS;
+
+    //if we have more than 8 colors available, use only 8 anyway
+    //in order to preserve the same color palette even for
+    //e.g. 256color terminal
+
+    if ( _colors > COLOR_WHITE + 1 )
+	//_colors = 8 at all times
+	_colors = COLOR_WHITE + 1;
+
+    if ( _pairs > _colors * _colors )
+	//_pairs == 64 at all times
+	_pairs = _colors * _colors;
+
+    for ( short i = 1; i < color_pairs(); ++i )
+	::init_pair( i, fg_color_pair( i ), bg_color_pair( i ) );
+}
+
+
+
 unsigned NCstyle::Style::sanitycheck()
 {
     return MaxSTglobal;
