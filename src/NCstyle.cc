@@ -47,6 +47,7 @@ int NCattribute::_pairs = ::COLOR_PAIRS;
 void NCattribute::init_colors()
 {
 
+    yuiMilestone() << "init_colors " << _colors << " -> " << ::COLORS << std::endl;
     //get number of available colors (property of the terminal)
     //the same with color pairs
 

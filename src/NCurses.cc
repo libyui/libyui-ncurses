@@ -282,6 +282,7 @@ void NCurses::init()
     }
 
     yuiMilestone() << "have color = " << ::has_colors()  << std::endl;
+    yuiMilestone() << "want color = " << want_colors()   << std::endl;
 
     if ( want_colors() && ::has_colors() )
     {
