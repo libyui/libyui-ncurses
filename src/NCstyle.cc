@@ -39,8 +39,8 @@
 #include "NCstyle.inverted.h"
 
 //initialize number of colors and color pairs
-int NCattribute::_colors = ::COLORS;
-int NCattribute::_pairs = ::COLOR_PAIRS;
+int NCattribute::_colors = 0;
+int NCattribute::_pairs = 0;
 
 
 

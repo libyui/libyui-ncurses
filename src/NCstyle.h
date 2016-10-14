@@ -45,7 +45,7 @@ struct NCattribute
     //if we have color support, return number of available colors
     //(at most 8 though)
     //will be initialized by init_color() function
-    inline static int colors()	    { return _colors ? _colors : ::COLORS; }
+    inline static int colors()	    { return _colors; }
 
     // do the same with color pairs
     inline static int color_pairs() { return _pairs ? _pairs : ::COLOR_PAIRS; }
