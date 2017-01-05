@@ -218,6 +218,9 @@ public:
     bool operator!=( const wrect & Rhs ) const { return !operator==( Rhs ); }
 
 
+    //! A new rectangle inside this one, by a 0-1 cell margin on each side.
+    // The result may have a wsize of (0, 0) (weird) but if the source has
+    // wsize (10, 1) then we get (8, 1).
     wrect inside() const
     {
 	wpos incpos( 1 );
@@ -232,12 +235,15 @@ public:
 	return wrect( Pos + incpos, Sze - decsze );
     }
 
-
+    //! Clip this wrect, which may have negative Pos,
+    // or even Sze (meaning +Infinity),
+    // relative to its parent *par*.
+    // The result will fit inside *par* or be empty.
     wrect intersectRelTo( const wrect & par ) const
     {
 	// Pos is relative to parent
 	if ( !( Pos < par.Sze ) )
-	    return wrect(); // UL is right or above par
+	    return wrect(); // UL is right or below par
 
 	wrect ret( *this );
 
@@ -249,11 +255,11 @@ public:
 	    ret.Sze.W = par.Sze.W - ret.Pos.C;
 
 	if ( !( ret.Pos + ret.Sze >= 0 ) )
-	    return wrect(); // LR is left or below par
+	    return wrect(); // LR is left or above par
 
 	// HERE we know, there's an intersection
 
-	// adjust Pos if it is left or below par
+	// adjust Pos if it is left or above par
 	if ( ret.Pos.L < 0 )
 	{
 	    ret.Sze.H += ret.Pos.L;

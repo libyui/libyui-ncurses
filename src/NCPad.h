@@ -31,16 +31,22 @@
 #include "NCWidget.h"
 
 
+/**
+ * @short Callbacks for scrollable objects
+ */
 class NCSchrollCB
 {
 public:
 
     virtual ~NCSchrollCB() {}
 
+    //! *total* columns in total, of that *visible*, starting with *start*
     virtual void HScroll( unsigned total, unsigned visible, unsigned start ) {}
 
+    //! *total* rows in total, of that *visible*, starting with *start*
     virtual void VScroll( unsigned total, unsigned visible, unsigned start ) {}
 
+    //! scroll headline; ccol: starting column?
     virtual void ScrollHead( NCursesWindow & w, unsigned ccol ) {}
 
     virtual void AdjustPadSize( wsze & minsze ) {}
