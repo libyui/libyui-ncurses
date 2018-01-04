@@ -405,6 +405,12 @@ inline int UNDEF( insertln )()	{ return insertln(); }
 #define insertln UNDEF(insertln)
 #endif
 
+#ifdef is_linetouched
+inline int UNDEF(is_linetouched)(WINDOW *w, int l)  { return is_linetouched(w,l); }
+#undef is_linetouched
+#define is_linetouched UNDEF(is_linetouched)
+#endif
+
 #ifdef leaveok
 inline int UNDEF( leaveok )( WINDOW* win, bool bf )  { return leaveok( win, bf ); }
 
