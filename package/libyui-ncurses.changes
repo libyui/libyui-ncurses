@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Tue Aug 19 15:04:44 UTC 2025 - Stefan Hundhammer <shundhammer@suse.com>
+
+- Backport: Prevent buffer overflow when drawing very wide labels
+  (originally for bsc#1211354, now also for bsc#1247975)
+- 2.48.3
+
+-------------------------------------------------------------------
 Tue May  9 14:11:59 CEST 2017 - snwint@suse.de
 
 - adjustments needed to work with latest ncurses update (bsc#1034922)
